@@ -1,0 +1,13 @@
+language: ruby
+rvm: 2.2.4
+addons:
+  postgresql: "9.3"
+services: postgresql
+before_script:
+  - psql -c 'create database im_data_test;' -U postgres
+  - cp config/database.yml.example config/database.yml
+  - cp config/secrets.yml.example config/secrets.yml
+  - bundle exec rake db:schema:load RAILS_ENV=test
+  - mkdir -p tmp/cache
+script: bundle exec rspec --require rails_helper spec
+
