@@ -1,0 +1,27 @@
+/* three colors of IM borg */
+$borg-country: #617085;
+$borg-access: #f15c23;
+$borg-control: #5ec1a5;
+$borg-activity: #aaa04e;
+
+/*
+ * bootstrap overrides
+ * see: https://github.com/twbs/bootstrap-rubygem/blob/master/templates/project/_bootstrap-variables.scss
+ */
+
+$white: #fefefe;
+$black: #222;
+$orange: $borg-access;
+$yellow: $borg-activity;
+$teal: $borg-control;
+$purple: $borg-country;
+
+$gray-dark: #444;
+$gray: #777;
+$gray-light: #aaa;
+$gray-lighter: #f8f8f8;
+
+$brand-primary: $purple;
+$brand-secondary: $orange;
+
+$link-hover-color: $brand-secondary;

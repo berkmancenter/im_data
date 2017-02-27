@@ -1,30 +1,35 @@
 <!DOCTYPE html>
 <%= render "/refinery/html_tag" %>
-  <% site_bar = render('/refinery/site_bar', :head => true) -%>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= render "/refinery/head" %>
+
     <%= render "/refinery/javascripts" %>
   </head>
   <body id="<%= canonical_id @page %>">
-    <%= site_bar -%>
-    <div id="page_container">
-      <header id="header">
-        <%= render "/refinery/header" -%>
-      </header>
-      <section id="page">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-              <h1>IM DATA</h1>
-            </div>
-          </div>
-        </div>
+    <nav class="navbar navbar-inverse navbar-static-top im-nav">
+      <div class="container">
+        <ul class="nav navbar-nav im-nav-links">
+          <li><a href="https://thenetmonitor.org">Internet Monitor</a></li>
+          <li><a href="https://dashboard.thenetmonitor.org">Dashboard</a></li>
+          <li><a href="https://accesscheck.thenetmonitor.org">AccessCheck</a></li>
+          <li class="active"><a href="/">Data</a></li>
+        </ul>
+      </div>
+    </nav>
 
-        <%= yield %>
-      </section>
-      <footer>
-        <%= render "/refinery/footer" -%>
-      </footer>
+    <div class="container" role="main">
+      <div class="page-header">
+        <h1>IM DATA</h1>
+      </div>
+
+      <%= yield %>
     </div>
+
+    <footer class="footer">
+      <div class="container">
+        <%= render "/refinery/footer" -%>
+      </div>
+    </footer>
   </body>
 </html>
