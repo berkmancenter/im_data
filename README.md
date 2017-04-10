@@ -1,5 +1,5 @@
-Internet Montitor Data
-==================
+Internet Monitor Data
+=====================
 
 This is the website for https://data.thenetmonitor.org. It contains information on the datasets and APIs we provide and how to access them.
 

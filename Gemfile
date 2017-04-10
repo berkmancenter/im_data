@@ -21,12 +21,6 @@ gem 'jquery-rails'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-# Twitter bootstrap
-gem 'bootstrap'
-source 'https://rails-assets.org' do
-  gem 'rails-assets-tether', '>= 1.1.0'
-end
-
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -54,4 +48,4 @@ gem 'quiet_assets', group: :development
 # Add support for Refinery's custom fork of the visual editor WYMeditor.
 gem 'refinerycms-wymeditor', ['~> 1.0', '>= 1.0.6']
 
-gem 'refinerycms-authentication-devise', git: 'https://github.com/redvulps/refinerycms-authentication-devise', branch: 'master'
+gem 'refinerycms-authentication-devise', git: 'https://github.com/refinery/refinerycms-authentication-devise', branch: 'master'
