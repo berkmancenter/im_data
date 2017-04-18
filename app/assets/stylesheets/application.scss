@@ -11,16 +11,132 @@
  * file per style scope.
  */
 
+@import url(//fonts.googleapis.com/css?family=Lato:400,700|Oswald:400,700);
+
 @import "refinery/formatting";
 @import "refinery/theme";
 
+/*
+ * bootstrap overrides
+ * see: https://github.com/twbs/bootstrap-rubygem/blob/master/templates/project/_bootstrap-variables.scss
+ */
+
 @import "colors";
+
+$font-family-sans-serif: Lato, sans-serif;
+$font-size-base: 0.9rem;
 
 @import "bootstrap";
 
-@import url(//fonts.googleapis.com/css?family=Lato:400,300,700|Oswald);
-
 body {
-  font-family: Lato, sans-serif;
 }
+
+
+.navbar {
+  border: 1px solid transparent;
+  min-height: 50px;
+}
+
+.navbar-default {
+  background-color: $gray-lighter;
+  border-color: #e7e7e7;
+}
+
+.navbar-header {
+  display: inline-block;
+}
+
+.navbar-brand {
+  color: $gray;
+  font-size: 18px;
+  margin-left: -15px;
+  padding: 7px 15px;
+  height: 50px;
+}
+
+.navbar-collapse {
+  display: inline-block;
+  float: right;
+}
+
+.navbar-right {
+  float: right;
+}
+
+.nav {
+  list-style-image: none;
+  list-style-position: outside;
+  list-style-type: none;
+
+  li {
+    display: block;
+    float: left;
+    position: relative;
+
+    a {
+      color: #777;
+      padding: 15px;
+      position: relative;
+      text-decoration: none;
+    }
+  }
+}
+
+/* IM main navigation */
+
+.im-nav {
+  background-color: #444;
+  height: 41px;
+  margin-bottom: 0px;
+  min-height: 41px;
+  padding-top: 0;
+
+  .container {
+    margin-top: 0;
+  }
+
+  .im-nav-links {
+    display: block;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+
+    li {
+      display: inline-block;
+      list-style: none;
+      margin: 0;
+      overflow: hidden;
+      text-align: center;
+      width: 24%;
+
+      &.active {
+        background: #555;
+      }
+
+      &:nth-child(1):hover {
+        background: #f15c23;
+      }
+
+      &:nth-child(2):hover {
+        background: #5ec1a5;
+      }
+
+      &:nth-child(3):hover {
+        background: #aaa04e;
+      }
+
+      a {
+        color: $white;
+        display: block;
+        font-family: Oswald;
+        font-size: 1.3em;
+        height: 40px;
+        padding-top: 0.3em;
+        text-decoration: none;
+        width: 100%;
+      }
+    }
+  }
+}
+
 
