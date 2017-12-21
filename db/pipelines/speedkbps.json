@@ -5,7 +5,7 @@
     "pipelineId" : "speedkbps72a1d0ec-671a-4e06-91bb-89d579cf7703",
     "title" : "speedkbps",
     "description" : "Average connection speed (kbps)",
-    "uuid" : "fc5bd4ec-4ca6-449c-b7c0-edaeabd75fde",
+    "uuid" : "10362fd0-b86b-4268-b1aa-be06ae6d85df",
     "configuration" : [ {
       "name" : "executionMode",
       "value" : "STANDALONE"
@@ -370,6 +370,646 @@
       "outputLanes" : [ "FieldRemover_01OutputLane15136349687130" ],
       "eventLanes" : [ ]
     }, {
+      "instanceName" : "StaticLookup_01",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_processor_kv_local_LocalLookupDProcessor",
+      "stageVersion" : "1",
+      "configuration" : [ {
+        "name" : "conf.values",
+        "value" : [ {
+          "key" : "Andorra",
+          "value" : "ad"
+        }, {
+          "key" : "United Arab Emirates",
+          "value" : "ae"
+        }, {
+          "key" : "Afghanistan",
+          "value" : "af"
+        }, {
+          "key" : "Antigua and Barbuda",
+          "value" : "ag"
+        }, {
+          "key" : "Albania",
+          "value" : "al"
+        }, {
+          "key" : "Armenia",
+          "value" : "am"
+        }, {
+          "key" : "Angola",
+          "value" : "ao"
+        }, {
+          "key" : "Antarctica",
+          "value" : "aq"
+        }, {
+          "key" : "Argentina",
+          "value" : "ar"
+        }, {
+          "key" : "Austria",
+          "value" : "at"
+        }, {
+          "key" : "Australia",
+          "value" : "au"
+        }, {
+          "key" : "Azerbaijan",
+          "value" : "az"
+        }, {
+          "key" : "Bosnia and Herzegovina",
+          "value" : "ba"
+        }, {
+          "key" : "Barbados",
+          "value" : "bb"
+        }, {
+          "key" : "Bangladesh",
+          "value" : "bd"
+        }, {
+          "key" : "Belgium",
+          "value" : "be"
+        }, {
+          "key" : "Burkina Faso",
+          "value" : "bf"
+        }, {
+          "key" : "Bulgaria",
+          "value" : "bg"
+        }, {
+          "key" : "Bahrain",
+          "value" : "bh"
+        }, {
+          "key" : "Burundi",
+          "value" : "bi"
+        }, {
+          "key" : "Benin",
+          "value" : "bj"
+        }, {
+          "key" : "Brunei",
+          "value" : "bn"
+        }, {
+          "key" : "Bolivia",
+          "value" : "bo"
+        }, {
+          "key" : "Brazil",
+          "value" : "br"
+        }, {
+          "key" : "Bahamas",
+          "value" : "bs"
+        }, {
+          "key" : "Bhutan",
+          "value" : "bt"
+        }, {
+          "key" : "Botswana",
+          "value" : "bw"
+        }, {
+          "key" : "Belarus",
+          "value" : "by"
+        }, {
+          "key" : "Belize",
+          "value" : "bz"
+        }, {
+          "key" : "Canada",
+          "value" : "ca"
+        }, {
+          "key" : "Democratic Republic of the Congo",
+          "value" : "cd"
+        }, {
+          "key" : "Central African Republic",
+          "value" : "cf"
+        }, {
+          "key" : "Republic of the Congo",
+          "value" : "cg"
+        }, {
+          "key" : "Switzerland",
+          "value" : "ch"
+        }, {
+          "key" : "Ivory Coast",
+          "value" : "ci"
+        }, {
+          "key" : "Chile",
+          "value" : "cl"
+        }, {
+          "key" : "Cameroon",
+          "value" : "cm"
+        }, {
+          "key" : "China",
+          "value" : "cn"
+        }, {
+          "key" : "Colombia",
+          "value" : "co"
+        }, {
+          "key" : "Costa Rica",
+          "value" : "cr"
+        }, {
+          "key" : "Cuba",
+          "value" : "cu"
+        }, {
+          "key" : "Cape Verde",
+          "value" : "cv"
+        }, {
+          "key" : "Cyprus",
+          "value" : "cy"
+        }, {
+          "key" : "Czech Republic",
+          "value" : "cz"
+        }, {
+          "key" : "Germany",
+          "value" : "de"
+        }, {
+          "key" : "Djibouti",
+          "value" : "dj"
+        }, {
+          "key" : "Denmark",
+          "value" : "dk"
+        }, {
+          "key" : "Dominica",
+          "value" : "dm"
+        }, {
+          "key" : "Dominican Republic",
+          "value" : "do"
+        }, {
+          "key" : "Algeria",
+          "value" : "dz"
+        }, {
+          "key" : "Ecuador",
+          "value" : "ec"
+        }, {
+          "key" : "Estonia",
+          "value" : "ee"
+        }, {
+          "key" : "Egypt",
+          "value" : "eg"
+        }, {
+          "key" : "Eritrea",
+          "value" : "er"
+        }, {
+          "key" : "Spain",
+          "value" : "es"
+        }, {
+          "key" : "Ethiopia",
+          "value" : "et"
+        }, {
+          "key" : "Finland",
+          "value" : "fi"
+        }, {
+          "key" : "Fiji",
+          "value" : "fj"
+        }, {
+          "key" : "France",
+          "value" : "fr"
+        }, {
+          "key" : "Gabon",
+          "value" : "ga"
+        }, {
+          "key" : "United Kingdom",
+          "value" : "gb"
+        }, {
+          "key" : "Grenada",
+          "value" : "gd"
+        }, {
+          "key" : "Georgia",
+          "value" : "ge"
+        }, {
+          "key" : "Ghana",
+          "value" : "gh"
+        }, {
+          "key" : "Greenland",
+          "value" : "gl"
+        }, {
+          "key" : "Gambia",
+          "value" : "gm"
+        }, {
+          "key" : "Guinea",
+          "value" : "gn"
+        }, {
+          "key" : "Equatorial Guinea",
+          "value" : "gq"
+        }, {
+          "key" : "Greece",
+          "value" : "gr"
+        }, {
+          "key" : "Guatemala",
+          "value" : "gt"
+        }, {
+          "key" : "Guinea-Bissau",
+          "value" : "gw"
+        }, {
+          "key" : "Guyana",
+          "value" : "gy"
+        }, {
+          "key" : "Hong Kong",
+          "value" : "hk"
+        }, {
+          "key" : "Honduras",
+          "value" : "hn"
+        }, {
+          "key" : "Croatia",
+          "value" : "hr"
+        }, {
+          "key" : "Haiti",
+          "value" : "ht"
+        }, {
+          "key" : "Hungary",
+          "value" : "hu"
+        }, {
+          "key" : "Indonesia",
+          "value" : "id"
+        }, {
+          "key" : "Ireland",
+          "value" : "ie"
+        }, {
+          "key" : "Israel",
+          "value" : "il"
+        }, {
+          "key" : "India",
+          "value" : "in"
+        }, {
+          "key" : "Iraq",
+          "value" : "iq"
+        }, {
+          "key" : "Iran",
+          "value" : "ir"
+        }, {
+          "key" : "Iceland",
+          "value" : "is"
+        }, {
+          "key" : "Italy",
+          "value" : "it"
+        }, {
+          "key" : "Jamaica",
+          "value" : "jm"
+        }, {
+          "key" : "Jordan",
+          "value" : "jo"
+        }, {
+          "key" : "Japan",
+          "value" : "jp"
+        }, {
+          "key" : "Kenya",
+          "value" : "ke"
+        }, {
+          "key" : "Kyrgyzstan",
+          "value" : "kg"
+        }, {
+          "key" : "Cambodia",
+          "value" : "kh"
+        }, {
+          "key" : "Kiribati",
+          "value" : "ki"
+        }, {
+          "key" : "Comoros",
+          "value" : "km"
+        }, {
+          "key" : "Saint Kitts and Nevis",
+          "value" : "kn"
+        }, {
+          "key" : "North Korea",
+          "value" : "kp"
+        }, {
+          "key" : "South Korea",
+          "value" : "kr"
+        }, {
+          "key" : "Kosovo",
+          "value" : "xk"
+        }, {
+          "key" : "Kuwait",
+          "value" : "kw"
+        }, {
+          "key" : "Kazakhstan",
+          "value" : "kz"
+        }, {
+          "key" : "Laos",
+          "value" : "la"
+        }, {
+          "key" : "Lebanon",
+          "value" : "lb"
+        }, {
+          "key" : "Saint Lucia",
+          "value" : "lc"
+        }, {
+          "key" : "Liechtenstein",
+          "value" : "li"
+        }, {
+          "key" : "Sri Lanka",
+          "value" : "lk"
+        }, {
+          "key" : "Liberia",
+          "value" : "lr"
+        }, {
+          "key" : "Lesotho",
+          "value" : "ls"
+        }, {
+          "key" : "Lithuania",
+          "value" : "lt"
+        }, {
+          "key" : "Luxembourg",
+          "value" : "lu"
+        }, {
+          "key" : "Latvia",
+          "value" : "lv"
+        }, {
+          "key" : "Libya",
+          "value" : "ly"
+        }, {
+          "key" : "Morocco",
+          "value" : "ma"
+        }, {
+          "key" : "Monaco",
+          "value" : "mc"
+        }, {
+          "key" : "Moldova",
+          "value" : "md"
+        }, {
+          "key" : "Montenegro",
+          "value" : "me"
+        }, {
+          "key" : "Madagascar",
+          "value" : "mg"
+        }, {
+          "key" : "Marshall Islands",
+          "value" : "mh"
+        }, {
+          "key" : "Macedonia",
+          "value" : "mk"
+        }, {
+          "key" : "Mali",
+          "value" : "ml"
+        }, {
+          "key" : "Myanmar",
+          "value" : "mm"
+        }, {
+          "key" : "Mongolia",
+          "value" : "mn"
+        }, {
+          "key" : "Macao",
+          "value" : "mo"
+        }, {
+          "key" : "Mauritania",
+          "value" : "mr"
+        }, {
+          "key" : "Malta",
+          "value" : "mt"
+        }, {
+          "key" : "Mauritius",
+          "value" : "mu"
+        }, {
+          "key" : "Maldives",
+          "value" : "mv"
+        }, {
+          "key" : "Malawi",
+          "value" : "mw"
+        }, {
+          "key" : "Mexico",
+          "value" : "mx"
+        }, {
+          "key" : "Malaysia",
+          "value" : "my"
+        }, {
+          "key" : "Mozambique",
+          "value" : "mz"
+        }, {
+          "key" : "Namibia",
+          "value" : "na"
+        }, {
+          "key" : "Niger",
+          "value" : "ne"
+        }, {
+          "key" : "Nigeria",
+          "value" : "ng"
+        }, {
+          "key" : "Nicaragua",
+          "value" : "ni"
+        }, {
+          "key" : "Netherlands",
+          "value" : "nl"
+        }, {
+          "key" : "Norway",
+          "value" : "no"
+        }, {
+          "key" : "Nepal",
+          "value" : "np"
+        }, {
+          "key" : "Nauru",
+          "value" : "nr"
+        }, {
+          "key" : "Niue",
+          "value" : "nu"
+        }, {
+          "key" : "New Zealand",
+          "value" : "nz"
+        }, {
+          "key" : "Oman",
+          "value" : "om"
+        }, {
+          "key" : "Panama",
+          "value" : "pa"
+        }, {
+          "key" : "Peru",
+          "value" : "pe"
+        }, {
+          "key" : "Papua New Guinea",
+          "value" : "pg"
+        }, {
+          "key" : "Philippines",
+          "value" : "ph"
+        }, {
+          "key" : "Pakistan",
+          "value" : "pk"
+        }, {
+          "key" : "Poland",
+          "value" : "pl"
+        }, {
+          "key" : "Palestinian Territory",
+          "value" : "ps"
+        }, {
+          "key" : "Portugal",
+          "value" : "pt"
+        }, {
+          "key" : "Palau",
+          "value" : "pw"
+        }, {
+          "key" : "Paraguay",
+          "value" : "py"
+        }, {
+          "key" : "Qatar",
+          "value" : "qa"
+        }, {
+          "key" : "Romania",
+          "value" : "ro"
+        }, {
+          "key" : "Serbia",
+          "value" : "rs"
+        }, {
+          "key" : "Russia",
+          "value" : "ru"
+        }, {
+          "key" : "Rwanda",
+          "value" : "rw"
+        }, {
+          "key" : "Saudi Arabia",
+          "value" : "sa"
+        }, {
+          "key" : "Solomon Islands",
+          "value" : "sb"
+        }, {
+          "key" : "Seychelles",
+          "value" : "sc"
+        }, {
+          "key" : "Sudan",
+          "value" : "sd"
+        }, {
+          "key" : "South Sudan",
+          "value" : "ss"
+        }, {
+          "key" : "Sweden",
+          "value" : "se"
+        }, {
+          "key" : "Singapore",
+          "value" : "sg"
+        }, {
+          "key" : "Slovenia",
+          "value" : "si"
+        }, {
+          "key" : "Slovakia",
+          "value" : "sk"
+        }, {
+          "key" : "Sierra Leone",
+          "value" : "sl"
+        }, {
+          "key" : "San Marino",
+          "value" : "sm"
+        }, {
+          "key" : "Senegal",
+          "value" : "sn"
+        }, {
+          "key" : "Somalia",
+          "value" : "so"
+        }, {
+          "key" : "Suriname",
+          "value" : "sr"
+        }, {
+          "key" : "Sao Tome and Principe",
+          "value" : "st"
+        }, {
+          "key" : "El Salvador",
+          "value" : "sv"
+        }, {
+          "key" : "Syria",
+          "value" : "sy"
+        }, {
+          "key" : "Swaziland",
+          "value" : "sz"
+        }, {
+          "key" : "Chad",
+          "value" : "td"
+        }, {
+          "key" : "Togo",
+          "value" : "tg"
+        }, {
+          "key" : "Thailand",
+          "value" : "th"
+        }, {
+          "key" : "Tajikistan",
+          "value" : "tj"
+        }, {
+          "key" : "East Timor",
+          "value" : "tl"
+        }, {
+          "key" : "Turkmenistan",
+          "value" : "tm"
+        }, {
+          "key" : "Tunisia",
+          "value" : "tn"
+        }, {
+          "key" : "Tonga",
+          "value" : "to"
+        }, {
+          "key" : "Turkey",
+          "value" : "tr"
+        }, {
+          "key" : "Trinidad and Tobago",
+          "value" : "tt"
+        }, {
+          "key" : "Tuvalu",
+          "value" : "tv"
+        }, {
+          "key" : "Taiwan",
+          "value" : "tw"
+        }, {
+          "key" : "Tanzania",
+          "value" : "tz"
+        }, {
+          "key" : "Ukraine",
+          "value" : "ua"
+        }, {
+          "key" : "Uganda",
+          "value" : "ug"
+        }, {
+          "key" : "United States",
+          "value" : "us"
+        }, {
+          "key" : "Uruguay",
+          "value" : "uy"
+        }, {
+          "key" : "Uzbekistan",
+          "value" : "uz"
+        }, {
+          "key" : "Vatican",
+          "value" : "va"
+        }, {
+          "key" : "Saint Vincent and the Grenadines",
+          "value" : "vc"
+        }, {
+          "key" : "Venezuela",
+          "value" : "ve"
+        }, {
+          "key" : "Vietnam",
+          "value" : "vn"
+        }, {
+          "key" : "Vanuatu",
+          "value" : "vu"
+        }, {
+          "key" : "Samoa",
+          "value" : "ws"
+        }, {
+          "key" : "Yemen",
+          "value" : "ye"
+        }, {
+          "key" : "South Africa",
+          "value" : "za"
+        }, {
+          "key" : "Zambia",
+          "value" : "zm"
+        }, {
+          "key" : "Zimbabwe",
+          "value" : "zw"
+        } ]
+      }, {
+        "name" : "conf.mode",
+        "value" : "RECORD"
+      }, {
+        "name" : "conf.lookups",
+        "value" : [ {
+          "keyExpr" : "${record:value('/country')}",
+          "outputFieldPath" : "/country"
+        } ]
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ "/country" ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
+      "uiInfo" : {
+        "description" : "Maps country names to iso2 codes",
+        "label" : "country-name-to-iso2",
+        "xPos" : 500,
+        "yPos" : 50,
+        "stageType" : "PROCESSOR"
+      },
+      "inputLanes" : [ "FieldRemover_01OutputLane15136349687130" ],
+      "outputLanes" : [ "StaticLookup_01OutputLane15138865902340" ],
+      "eventLanes" : [ ]
+    }, {
       "instanceName" : "JavaScriptEvaluator_03",
       "library" : "streamsets-datacollector-basic-lib",
       "stageName" : "com_streamsets_pipeline_stage_processor_javascript_JavaScriptDProcessor",
@@ -399,11 +1039,11 @@
       "uiInfo" : {
         "description" : "",
         "label" : "add-indicator",
-        "xPos" : 500,
+        "xPos" : 720,
         "yPos" : 50,
         "stageType" : "PROCESSOR"
       },
-      "inputLanes" : [ "FieldRemover_01OutputLane15136349687130" ],
+      "inputLanes" : [ "StaticLookup_01OutputLane15138865902340" ],
       "outputLanes" : [ "JavaScriptEvaluator_03OutputLane15136346155910" ],
       "eventLanes" : [ ]
     }, {
@@ -436,7 +1076,7 @@
       "uiInfo" : {
         "description" : "add date column from file name (last, separated by underscore)",
         "label" : "date-from-filename",
-        "xPos" : 720,
+        "xPos" : 940,
         "yPos" : 50,
         "stageType" : "PROCESSOR"
       },
@@ -476,7 +1116,7 @@
       "uiInfo" : {
         "description" : "",
         "label" : "speedmbps-to-value",
-        "xPos" : 940,
+        "xPos" : 1160,
         "yPos" : 50,
         "stageType" : "PROCESSOR"
       },
@@ -528,7 +1168,7 @@
       "uiInfo" : {
         "description" : "Set the value field as a float",
         "label" : "value-to-number",
-        "xPos" : 1160,
+        "xPos" : 1380,
         "yPos" : 50,
         "stageType" : "PROCESSOR"
       },
@@ -565,7 +1205,7 @@
       "uiInfo" : {
         "description" : "Multiply value by 1000",
         "label" : "make-kbps",
-        "xPos" : 1380,
+        "xPos" : 1600,
         "yPos" : 50,
         "stageType" : "PROCESSOR"
       },
@@ -611,7 +1251,7 @@
       "uiInfo" : {
         "description" : "",
         "label" : "im-data-order",
-        "xPos" : 1600,
+        "xPos" : 1820,
         "yPos" : 50,
         "stageType" : "PROCESSOR"
       },
@@ -801,7 +1441,7 @@
       "uiInfo" : {
         "description" : "",
         "label" : "destination",
-        "xPos" : 1820,
+        "xPos" : 2040,
         "yPos" : 50,
         "stageType" : "TARGET"
       },
@@ -843,11 +1483,11 @@
       "title" : "speedkbps",
       "description" : "Average connection speed (kbps)",
       "created" : 1513625884346,
-      "lastModified" : 1513635033263,
+      "lastModified" : 1513894480341,
       "creator" : "admin",
       "lastModifier" : "admin",
       "lastRev" : "0",
-      "uuid" : "fc5bd4ec-4ca6-449c-b7c0-edaeabd75fde",
+      "uuid" : "10362fd0-b86b-4268-b1aa-be06ae6d85df",
       "valid" : true,
       "metadata" : {
         "labels" : [ ]
@@ -912,9 +1552,9 @@
     } ],
     "valid" : true,
     "issues" : {
+      "pipelineIssues" : [ ],
       "stageIssues" : { },
-      "issueCount" : 0,
-      "pipelineIssues" : [ ]
+      "issueCount" : 0
     },
     "previewable" : true
   },
