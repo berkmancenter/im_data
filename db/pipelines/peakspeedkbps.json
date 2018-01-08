@@ -2,10 +2,10 @@
   "pipelineConfig" : {
     "schemaVersion" : 4,
     "version" : 7,
-    "pipelineId" : "speedkbps72a1d0ec-671a-4e06-91bb-89d579cf7703",
-    "title" : "speedkbps",
-    "description" : "Average connection speed (kbps)",
-    "uuid" : "10362fd0-b86b-4268-b1aa-be06ae6d85df",
+    "pipelineId" : "peakspeedkbps109b3f27-6581-4cbe-861d-501f7394ddf9",
+    "title" : "peakspeedkbps",
+    "description" : "Average peak connection speed (kbps)",
+    "uuid" : "2079455b-e8ab-4720-b959-85d609df6d36",
     "configuration" : [ {
       "name" : "executionMode",
       "value" : "STANDALONE"
@@ -351,7 +351,7 @@
         "value" : "KEEP"
       }, {
         "name" : "fields",
-        "value" : [ "/country", "/speedmbps" ]
+        "value" : [ "/country", "/peakspeedmbps" ]
       }, {
         "name" : "stageRequiredFields",
         "value" : [ ]
@@ -1022,7 +1022,7 @@
         "value" : ""
       }, {
         "name" : "script",
-        "value" : "for(var i = 0; i < records.length; i++) {\n  try {\n    records[i].value['indicator'] = 'speedkbps';\n    output.write(records[i]);\n  } catch (e) {\n    error.write(records[i], e);\n  }\n}"
+        "value" : "for(var i = 0; i < records.length; i++) {\n  try {\n    records[i].value['indicator'] = 'peakspeedkbps';\n    output.write(records[i]);\n  } catch (e) {\n    error.write(records[i], e);\n  }\n}"
       }, {
         "name" : "destroyScript",
         "value" : ""
@@ -1091,7 +1091,7 @@
       "configuration" : [ {
         "name" : "renameMapping",
         "value" : [ {
-          "fromFieldExpression" : "/speedmbps",
+          "fromFieldExpression" : "/peakspeedmbps",
           "toFieldExpression" : "/value"
         } ]
       }, {
@@ -1108,14 +1108,14 @@
         "value" : "TO_ERROR"
       }, {
         "name" : "stageRequiredFields",
-        "value" : [ "/speedmbps" ]
+        "value" : [ "/peakspeedmbps" ]
       }, {
         "name" : "stageRecordPreconditions",
         "value" : [ ]
       } ],
       "uiInfo" : {
         "description" : "",
-        "label" : "speedmbps-to-value",
+        "label" : "peakspeedmbps-to-value",
         "xPos" : 1160,
         "yPos" : 50,
         "stageType" : "PROCESSOR"
@@ -1479,20 +1479,20 @@
       "eventLanes" : [ ]
     },
     "info" : {
-      "pipelineId" : "speedkbps72a1d0ec-671a-4e06-91bb-89d579cf7703",
-      "title" : "speedkbps",
-      "description" : "Average connection speed (kbps)",
-      "created" : 1513625884346,
-      "lastModified" : 1513894480341,
+      "pipelineId" : "peakspeedkbps109b3f27-6581-4cbe-861d-501f7394ddf9",
+      "title" : "peakspeedkbps",
+      "description" : "Average peak connection speed (kbps)",
+      "created" : 1515441359271,
+      "lastModified" : 1515442078893,
       "creator" : "admin",
       "lastModifier" : "admin",
       "lastRev" : "0",
-      "uuid" : "10362fd0-b86b-4268-b1aa-be06ae6d85df",
+      "uuid" : "2079455b-e8ab-4720-b959-85d609df6d36",
       "valid" : true,
       "metadata" : {
         "labels" : [ ]
       },
-      "name" : "speedkbps72a1d0ec-671a-4e06-91bb-89d579cf7703",
+      "name" : "peakspeedkbps109b3f27-6581-4cbe-861d-501f7394ddf9",
       "sdcVersion" : "2.7.2.0",
       "sdcId" : "792d9b28-c33e-11e7-80c2-b103c1012b4f"
     },
@@ -1619,7 +1619,7 @@
     } ],
     "dataRuleDefinitions" : [ ],
     "driftRuleDefinitions" : [ ],
-    "uuid" : "b164eae3-6509-4277-92a3-5b696a5ee1b0",
+    "uuid" : "85571196-4efb-4e46-af9b-e95fdf818a4b",
     "configuration" : [ {
       "name" : "emailIDs",
       "value" : [ ]

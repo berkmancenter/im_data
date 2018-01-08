@@ -3,9 +3,9 @@
     "schemaVersion" : 4,
     "version" : 7,
     "pipelineId" : "bbcostimindex20145eaa2143-2cee-4938-b4e3-e99d877f0b02",
-    "title" : "bbcost_IM",
+    "title" : "bbcost",
     "description" : "Broadband Cost from IM Access Index research",
-    "uuid" : "a4b1a5aa-ab4c-482a-98ac-dee0ad462e0c",
+    "uuid" : "8c29becc-7d25-43dc-9861-c8625c522da5",
     "configuration" : [ {
       "name" : "executionMode",
       "value" : "STANDALONE"
@@ -735,14 +735,14 @@
     },
     "info" : {
       "pipelineId" : "bbcostimindex20145eaa2143-2cee-4938-b4e3-e99d877f0b02",
-      "title" : "bbcost_IM",
+      "title" : "bbcost",
       "description" : "Broadband Cost from IM Access Index research",
       "created" : 1510610412257,
-      "lastModified" : 1513626225935,
+      "lastModified" : 1513699591317,
       "creator" : "admin",
       "lastModifier" : "admin",
       "lastRev" : "0",
-      "uuid" : "a4b1a5aa-ab4c-482a-98ac-dee0ad462e0c",
+      "uuid" : "8c29becc-7d25-43dc-9861-c8625c522da5",
       "valid" : true,
       "metadata" : {
         "labels" : [ ]
@@ -807,11 +807,11 @@
     } ],
     "valid" : true,
     "issues" : {
+      "pipelineIssues" : [ ],
       "stageIssues" : { },
-      "issueCount" : 0,
-      "pipelineIssues" : [ ]
+      "issueCount" : 0
     },
-    "previewable" : true
+    "previewable" : false
   },
   "pipelineRules" : {
     "schemaVersion" : 3,

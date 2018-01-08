@@ -2,10 +2,10 @@
   "pipelineConfig" : {
     "schemaVersion" : 4,
     "version" : 7,
-    "pipelineId" : "speedkbps72a1d0ec-671a-4e06-91bb-89d579cf7703",
-    "title" : "speedkbps",
-    "description" : "Average connection speed (kbps)",
-    "uuid" : "10362fd0-b86b-4268-b1aa-be06ae6d85df",
+    "pipelineId" : "bbrate61144cfd-bcc2-4267-9498-43190cda1766",
+    "title" : "bbrate",
+    "description" : "Broadband adoption rate",
+    "uuid" : "012f65e3-a042-4075-9406-6ffba349f64d",
     "configuration" : [ {
       "name" : "executionMode",
       "value" : "STANDALONE"
@@ -351,7 +351,7 @@
         "value" : "KEEP"
       }, {
         "name" : "fields",
-        "value" : [ "/country", "/speedmbps" ]
+        "value" : [ "/country", "/bbrate" ]
       }, {
         "name" : "stageRequiredFields",
         "value" : [ ]
@@ -1022,7 +1022,7 @@
         "value" : ""
       }, {
         "name" : "script",
-        "value" : "for(var i = 0; i < records.length; i++) {\n  try {\n    records[i].value['indicator'] = 'speedkbps';\n    output.write(records[i]);\n  } catch (e) {\n    error.write(records[i], e);\n  }\n}"
+        "value" : "for(var i = 0; i < records.length; i++) {\n  try {\n    records[i].value['indicator'] = 'bbrate';\n    output.write(records[i]);\n  } catch (e) {\n    error.write(records[i], e);\n  }\n}"
       }, {
         "name" : "destroyScript",
         "value" : ""
@@ -1091,7 +1091,7 @@
       "configuration" : [ {
         "name" : "renameMapping",
         "value" : [ {
-          "fromFieldExpression" : "/speedmbps",
+          "fromFieldExpression" : "/bbrate",
           "toFieldExpression" : "/value"
         } ]
       }, {
@@ -1108,14 +1108,14 @@
         "value" : "TO_ERROR"
       }, {
         "name" : "stageRequiredFields",
-        "value" : [ "/speedmbps" ]
+        "value" : [ "/bbrate" ]
       }, {
         "name" : "stageRecordPreconditions",
         "value" : [ ]
       } ],
       "uiInfo" : {
         "description" : "",
-        "label" : "speedmbps-to-value",
+        "label" : "rename-to-value",
         "xPos" : 1160,
         "yPos" : 50,
         "stageType" : "PROCESSOR"
@@ -1184,7 +1184,7 @@
         "name" : "expressionProcessorConfigs",
         "value" : [ {
           "fieldToSet" : "/value",
-          "expression" : "${record:value('/value') != null ? math:round(record:value('/value') * 1000) : null}"
+          "expression" : "${record:value('/value') != null ? math:round(record:value('/value') * 100) : null}"
         } ]
       }, {
         "name" : "headerAttributeConfigs",
@@ -1203,8 +1203,8 @@
         "value" : [ ]
       } ],
       "uiInfo" : {
-        "description" : "Multiply value by 1000",
-        "label" : "make-kbps",
+        "description" : "Multiply value by 100",
+        "label" : "make-percent",
         "xPos" : 1600,
         "yPos" : 50,
         "stageType" : "PROCESSOR"
@@ -1479,20 +1479,20 @@
       "eventLanes" : [ ]
     },
     "info" : {
-      "pipelineId" : "speedkbps72a1d0ec-671a-4e06-91bb-89d579cf7703",
-      "title" : "speedkbps",
-      "description" : "Average connection speed (kbps)",
-      "created" : 1513625884346,
-      "lastModified" : 1513894480341,
+      "pipelineId" : "bbrate61144cfd-bcc2-4267-9498-43190cda1766",
+      "title" : "bbrate",
+      "description" : "Broadband adoption rate",
+      "created" : 1515442846080,
+      "lastModified" : 1515443369367,
       "creator" : "admin",
       "lastModifier" : "admin",
       "lastRev" : "0",
-      "uuid" : "10362fd0-b86b-4268-b1aa-be06ae6d85df",
+      "uuid" : "012f65e3-a042-4075-9406-6ffba349f64d",
       "valid" : true,
       "metadata" : {
         "labels" : [ ]
       },
-      "name" : "speedkbps72a1d0ec-671a-4e06-91bb-89d579cf7703",
+      "name" : "bbrate61144cfd-bcc2-4267-9498-43190cda1766",
       "sdcVersion" : "2.7.2.0",
       "sdcId" : "792d9b28-c33e-11e7-80c2-b103c1012b4f"
     },
@@ -1619,7 +1619,7 @@
     } ],
     "dataRuleDefinitions" : [ ],
     "driftRuleDefinitions" : [ ],
-    "uuid" : "b164eae3-6509-4277-92a3-5b696a5ee1b0",
+    "uuid" : "96749087-c30e-4f8c-90cc-e4ddd752ec11",
     "configuration" : [ {
       "name" : "emailIDs",
       "value" : [ ]

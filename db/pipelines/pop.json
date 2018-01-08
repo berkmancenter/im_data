@@ -2,10 +2,10 @@
   "pipelineConfig" : {
     "schemaVersion" : 4,
     "version" : 7,
-    "pipelineId" : "speedkbps72a1d0ec-671a-4e06-91bb-89d579cf7703",
-    "title" : "speedkbps",
-    "description" : "Average connection speed (kbps)",
-    "uuid" : "10362fd0-b86b-4268-b1aa-be06ae6d85df",
+    "pipelineId" : "popcda607d8-d60e-48df-9b5a-7a2fe2657e50",
+    "title" : "pop",
+    "description" : "World Bank: population",
+    "uuid" : "889fce8a-8929-4b87-b237-736b3e93e9d8",
     "configuration" : [ {
       "name" : "executionMode",
       "value" : "STANDALONE"
@@ -82,7 +82,7 @@
     "uiInfo" : {
       "previewConfig" : {
         "previewSource" : "CONFIGURED_SOURCE",
-        "batchSize" : "10",
+        "batchSize" : "1",
         "timeout" : 10000,
         "writeToDestinations" : false,
         "executeLifecycleEvents" : false,
@@ -284,7 +284,7 @@
         "value" : "GLOB"
       }, {
         "name" : "conf.filePattern",
-        "value" : "state-of-the-internet_Akamai_*.csv"
+        "value" : "pop_WorldBank*.csv"
       }, {
         "name" : "conf.useLastModified",
         "value" : "LEXICOGRAPHICAL"
@@ -331,27 +331,39 @@
         "rawSource" : {
           "configuration" : [ {
             "name" : "fileName",
-            "value" : "/var/im_data/db/data/src/state-of-the-internet_Akamai_2014-03-31.csv"
+            "value" : "/var/im_data/db/data/src/pop_WorldBank_2016.csv"
           } ]
         },
         "description" : "",
-        "label" : "soti_akamai",
+        "label" : "pop_worldbank",
         "xPos" : 60
       },
       "inputLanes" : [ ],
       "outputLanes" : [ "Directory_01OutputLane15105972392960" ],
       "eventLanes" : [ ]
     }, {
-      "instanceName" : "FieldRemover_01",
+      "instanceName" : "FieldRenamer_02",
       "library" : "streamsets-datacollector-basic-lib",
-      "stageName" : "com_streamsets_pipeline_stage_processor_fieldfilter_FieldFilterDProcessor",
-      "stageVersion" : "1",
+      "stageName" : "com_streamsets_pipeline_stage_processor_fieldrenamer_FieldRenamerDProcessor",
+      "stageVersion" : "2",
       "configuration" : [ {
-        "name" : "filterOperation",
-        "value" : "KEEP"
+        "name" : "renameMapping",
+        "value" : [ {
+          "fromFieldExpression" : "/'﻿Country Name'",
+          "toFieldExpression" : "/country"
+        } ]
       }, {
-        "name" : "fields",
-        "value" : [ "/country", "/speedmbps" ]
+        "name" : "errorHandler.nonExistingFromFieldHandling",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "errorHandler.existingToFieldHandling",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "errorHandler.multipleFromFieldsMatching",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
       }, {
         "name" : "stageRequiredFields",
         "value" : [ ]
@@ -360,14 +372,51 @@
         "value" : [ ]
       } ],
       "uiInfo" : {
-        "description" : "Remove all fields which are not our value field",
-        "label" : "remove-non-value",
+        "description" : "Rename country name field to country",
+        "label" : "rename-to-country",
         "xPos" : 280,
         "yPos" : 50,
         "stageType" : "PROCESSOR"
       },
       "inputLanes" : [ "Directory_01OutputLane15105972392960" ],
-      "outputLanes" : [ "FieldRemover_01OutputLane15136349687130" ],
+      "outputLanes" : [ "FieldRenamer_02OutputLane15154466223170" ],
+      "eventLanes" : [ ]
+    }, {
+      "instanceName" : "JavaScriptEvaluator_04",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_processor_javascript_JavaScriptDProcessor",
+      "stageVersion" : "2",
+      "configuration" : [ {
+        "name" : "processingMode",
+        "value" : "BATCH"
+      }, {
+        "name" : "initScript",
+        "value" : ""
+      }, {
+        "name" : "script",
+        "value" : "for(var i = 0; i < records.length; i++) {\n  try {\n    var country = records[i].value['country'];\n    \n    for ( key in records[i].value ) {\n      if ( !isNaN(key) ) {       \n        \n        \n        var newRecord = sdcFunctions.createRecord(records[i].sourceId + ':' + key);\n    \n        \n        newRecord.value = {\n          'indicator': key,\n          'country': country,\n          'date': key + '-12-31',\n          'value': records[i].value[ key ].length ? records[i].value[ key ] : null\n        };\n        output.write( newRecord );\n      }\n    }    \n  } catch (e) {\n    // Send record to error\n    error.write(records[i], e);\n  }\n}"
+      }, {
+        "name" : "destroyScript",
+        "value" : ""
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "explode-years",
+        "xPos" : 500,
+        "yPos" : 50,
+        "stageType" : "PROCESSOR"
+      },
+      "inputLanes" : [ "FieldRenamer_02OutputLane15154466223170" ],
+      "outputLanes" : [ "JavaScriptEvaluator_04OutputLane15154462380920" ],
       "eventLanes" : [ ]
     }, {
       "instanceName" : "StaticLookup_01",
@@ -409,6 +458,9 @@
         }, {
           "key" : "Australia",
           "value" : "au"
+        }, {
+          "key" : "Aruba",
+          "value" : "aw"
         }, {
           "key" : "Azerbaijan",
           "value" : "az"
@@ -1002,11 +1054,11 @@
       "uiInfo" : {
         "description" : "Maps country names to iso2 codes",
         "label" : "country-name-to-iso2",
-        "xPos" : 500,
+        "xPos" : 720,
         "yPos" : 50,
         "stageType" : "PROCESSOR"
       },
-      "inputLanes" : [ "FieldRemover_01OutputLane15136349687130" ],
+      "inputLanes" : [ "JavaScriptEvaluator_04OutputLane15154462380920" ],
       "outputLanes" : [ "StaticLookup_01OutputLane15138865902340" ],
       "eventLanes" : [ ]
     }, {
@@ -1022,7 +1074,7 @@
         "value" : ""
       }, {
         "name" : "script",
-        "value" : "for(var i = 0; i < records.length; i++) {\n  try {\n    records[i].value['indicator'] = 'speedkbps';\n    output.write(records[i]);\n  } catch (e) {\n    error.write(records[i], e);\n  }\n}"
+        "value" : "for(var i = 0; i < records.length; i++) {\n  try {\n    records[i].value['indicator'] = 'pop';\n    output.write(records[i]);\n  } catch (e) {\n    error.write(records[i], e);\n  }\n}"
       }, {
         "name" : "destroyScript",
         "value" : ""
@@ -1039,89 +1091,12 @@
       "uiInfo" : {
         "description" : "",
         "label" : "add-indicator",
-        "xPos" : 720,
+        "xPos" : 940,
         "yPos" : 50,
         "stageType" : "PROCESSOR"
       },
       "inputLanes" : [ "StaticLookup_01OutputLane15138865902340" ],
       "outputLanes" : [ "JavaScriptEvaluator_03OutputLane15136346155910" ],
-      "eventLanes" : [ ]
-    }, {
-      "instanceName" : "JavaScriptEvaluator_02",
-      "library" : "streamsets-datacollector-basic-lib",
-      "stageName" : "com_streamsets_pipeline_stage_processor_javascript_JavaScriptDProcessor",
-      "stageVersion" : "2",
-      "configuration" : [ {
-        "name" : "processingMode",
-        "value" : "BATCH"
-      }, {
-        "name" : "initScript",
-        "value" : ""
-      }, {
-        "name" : "script",
-        "value" : "var filename = records[0].attributes['filename'].slice( 0, -4 );\nvar filenameParts = filename.split( '_' );\nvar recordsDate = filenameParts[ filenameParts.length - 1 ];\n\nfor(var i = 0; i < records.length; i++) {\n  try {\n    records[i].value['date'] = recordsDate;\n    output.write(records[i]);\n  } catch (e) {\n    error.write(records[i], e);\n  }\n}"
-      }, {
-        "name" : "destroyScript",
-        "value" : ""
-      }, {
-        "name" : "stageOnRecordError",
-        "value" : "TO_ERROR"
-      }, {
-        "name" : "stageRequiredFields",
-        "value" : [ ]
-      }, {
-        "name" : "stageRecordPreconditions",
-        "value" : [ ]
-      } ],
-      "uiInfo" : {
-        "description" : "add date column from file name (last, separated by underscore)",
-        "label" : "date-from-filename",
-        "xPos" : 940,
-        "yPos" : 50,
-        "stageType" : "PROCESSOR"
-      },
-      "inputLanes" : [ "JavaScriptEvaluator_03OutputLane15136346155910" ],
-      "outputLanes" : [ "JavaScriptEvaluator_02OutputLane15136314394180" ],
-      "eventLanes" : [ ]
-    }, {
-      "instanceName" : "FieldRenamer_01",
-      "library" : "streamsets-datacollector-basic-lib",
-      "stageName" : "com_streamsets_pipeline_stage_processor_fieldrenamer_FieldRenamerDProcessor",
-      "stageVersion" : "2",
-      "configuration" : [ {
-        "name" : "renameMapping",
-        "value" : [ {
-          "fromFieldExpression" : "/speedmbps",
-          "toFieldExpression" : "/value"
-        } ]
-      }, {
-        "name" : "errorHandler.nonExistingFromFieldHandling",
-        "value" : "TO_ERROR"
-      }, {
-        "name" : "errorHandler.existingToFieldHandling",
-        "value" : "TO_ERROR"
-      }, {
-        "name" : "errorHandler.multipleFromFieldsMatching",
-        "value" : "TO_ERROR"
-      }, {
-        "name" : "stageOnRecordError",
-        "value" : "TO_ERROR"
-      }, {
-        "name" : "stageRequiredFields",
-        "value" : [ "/speedmbps" ]
-      }, {
-        "name" : "stageRecordPreconditions",
-        "value" : [ ]
-      } ],
-      "uiInfo" : {
-        "description" : "",
-        "label" : "speedmbps-to-value",
-        "xPos" : 1160,
-        "yPos" : 50,
-        "stageType" : "PROCESSOR"
-      },
-      "inputLanes" : [ "JavaScriptEvaluator_02OutputLane15136314394180" ],
-      "outputLanes" : [ "FieldRenamer_01OutputLane15136326723140" ],
       "eventLanes" : [ ]
     }, {
       "instanceName" : "FieldTypeConverter_01",
@@ -1168,49 +1143,12 @@
       "uiInfo" : {
         "description" : "Set the value field as a float",
         "label" : "value-to-number",
-        "xPos" : 1380,
+        "xPos" : 1160,
         "yPos" : 50,
         "stageType" : "PROCESSOR"
       },
-      "inputLanes" : [ "FieldRenamer_01OutputLane15136326723140" ],
+      "inputLanes" : [ "JavaScriptEvaluator_03OutputLane15136346155910" ],
       "outputLanes" : [ "FieldTypeConverter_01OutputLane15118856718820" ],
-      "eventLanes" : [ ]
-    }, {
-      "instanceName" : "ExpressionEvaluator_01",
-      "library" : "streamsets-datacollector-basic-lib",
-      "stageName" : "com_streamsets_pipeline_stage_processor_expression_ExpressionDProcessor",
-      "stageVersion" : "2",
-      "configuration" : [ {
-        "name" : "expressionProcessorConfigs",
-        "value" : [ {
-          "fieldToSet" : "/value",
-          "expression" : "${record:value('/value') != null ? math:round(record:value('/value') * 1000) : null}"
-        } ]
-      }, {
-        "name" : "headerAttributeConfigs",
-        "value" : [ ]
-      }, {
-        "name" : "fieldAttributeConfigs",
-        "value" : [ ]
-      }, {
-        "name" : "stageOnRecordError",
-        "value" : "TO_ERROR"
-      }, {
-        "name" : "stageRequiredFields",
-        "value" : [ "/value" ]
-      }, {
-        "name" : "stageRecordPreconditions",
-        "value" : [ ]
-      } ],
-      "uiInfo" : {
-        "description" : "Multiply value by 1000",
-        "label" : "make-kbps",
-        "xPos" : 1600,
-        "yPos" : 50,
-        "stageType" : "PROCESSOR"
-      },
-      "inputLanes" : [ "FieldTypeConverter_01OutputLane15118856718820" ],
-      "outputLanes" : [ "ExpressionEvaluator_01OutputLane15118963266780" ],
       "eventLanes" : [ ]
     }, {
       "instanceName" : "FieldOrder_01",
@@ -1251,11 +1189,11 @@
       "uiInfo" : {
         "description" : "",
         "label" : "im-data-order",
-        "xPos" : 1820,
+        "xPos" : 1380,
         "yPos" : 50,
         "stageType" : "PROCESSOR"
       },
-      "inputLanes" : [ "ExpressionEvaluator_01OutputLane15118963266780" ],
+      "inputLanes" : [ "FieldTypeConverter_01OutputLane15118856718820" ],
       "outputLanes" : [ "FieldOrder_01OutputLane15106075362660" ],
       "eventLanes" : [ ]
     }, {
@@ -1441,7 +1379,7 @@
       "uiInfo" : {
         "description" : "",
         "label" : "destination",
-        "xPos" : 2040,
+        "xPos" : 1600,
         "yPos" : 50,
         "stageType" : "TARGET"
       },
@@ -1479,20 +1417,20 @@
       "eventLanes" : [ ]
     },
     "info" : {
-      "pipelineId" : "speedkbps72a1d0ec-671a-4e06-91bb-89d579cf7703",
-      "title" : "speedkbps",
-      "description" : "Average connection speed (kbps)",
-      "created" : 1513625884346,
-      "lastModified" : 1513894480341,
+      "pipelineId" : "popcda607d8-d60e-48df-9b5a-7a2fe2657e50",
+      "title" : "pop",
+      "description" : "World Bank: population",
+      "created" : 1515445595351,
+      "lastModified" : 1515447611142,
       "creator" : "admin",
       "lastModifier" : "admin",
       "lastRev" : "0",
-      "uuid" : "10362fd0-b86b-4268-b1aa-be06ae6d85df",
+      "uuid" : "889fce8a-8929-4b87-b237-736b3e93e9d8",
       "valid" : true,
       "metadata" : {
         "labels" : [ ]
       },
-      "name" : "speedkbps72a1d0ec-671a-4e06-91bb-89d579cf7703",
+      "name" : "popcda607d8-d60e-48df-9b5a-7a2fe2657e50",
       "sdcVersion" : "2.7.2.0",
       "sdcId" : "792d9b28-c33e-11e7-80c2-b103c1012b4f"
     },
@@ -1619,7 +1557,7 @@
     } ],
     "dataRuleDefinitions" : [ ],
     "driftRuleDefinitions" : [ ],
-    "uuid" : "b164eae3-6509-4277-92a3-5b696a5ee1b0",
+    "uuid" : "87e9173f-4d46-42e7-8590-f6db7390707b",
     "configuration" : [ {
       "name" : "emailIDs",
       "value" : [ ]
